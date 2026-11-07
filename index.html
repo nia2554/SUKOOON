@@ -263,7 +263,7 @@
     font-size:15px;padding:8px 16px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:60}
   .toast.show{opacity:1}
 
-  /* ---------- OPENING SCREEN / DARK MAROON RIBBON OVERLAY ---------- */
+  /* ---------- OPENING SCREEN / MAROON RIBBON OVERLAY ---------- */
   .opener {
     position: fixed;
     inset: 0;
@@ -282,83 +282,73 @@
     visibility: hidden;
     pointer-events: none;
   }
-
-  /* Dark Maroon Ribbon Banner */
-  .opener-ribbon {
+  
+  .opener-content {
     position: relative;
     width: 100%;
-    max-width: 440px;
-    background: linear-gradient(145deg, #4A121A 0%, #360B12 60%, #25060B 100%);
-    box-shadow: 0 20px 50px -15px rgba(45, 10, 16, 0.5), 0 4px 12px rgba(0, 0, 0, 0.2);
-    padding: 44px 28px 40px;
-    border-radius: 4px;
+    max-width: 520px;
     text-align: center;
-    border: 1px solid var(--gold);
-  }
-  
-  /* Inner accent line for ribbon detail */
-  .opener-ribbon::before {
-    content: "";
-    position: absolute;
-    inset: 8px;
-    border: 1px dashed rgba(217, 195, 160, 0.4);
-    pointer-events: none;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .opener .head {
-    position: relative;
-    z-index: 2;
+  /* Ribbon Graphic Banner */
+  .ribbon-banner {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    display: block;
+    margin: 10px auto 20px;
+    filter: drop-shadow(0 12px 25px rgba(74, 18, 26, 0.35));
   }
+
   .opener .small {
     font-family: "Cinzel", serif;
     letter-spacing: 0.36em;
     font-size: 11px;
-    color: var(--gold-soft);
+    color: var(--ink-soft);
   }
   .opener .ar-name {
     font-family: "Amiri", serif;
-    font-size: clamp(32px, 6vh, 46px);
-    color: #FBF6EC;
+    font-size: clamp(30px, 5.5vh, 42px);
+    color: var(--gold-deep);
     line-height: 1.4;
-    margin-top: 8px;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    margin-top: 10px;
   }
   .opener h1 {
     font-family: "Cinzel", serif;
-    font-weight: 600;
-    font-size: clamp(24px, 4.5vh, 34px);
-    letter-spacing: 0.35em;
-    color: var(--gold-soft);
-    line-height: 1.1;
+    font-weight: 500;
+    font-size: clamp(22px, 4vh, 32px);
+    letter-spacing: 0.32em;
+    color: var(--gold);
+    line-height: 1;
     margin-top: 4px;
   }
   .opener-sub {
     font-style: italic;
     font-size: 15px;
-    color: #E6D8C3;
-    margin-top: 12px;
+    color: var(--ink-soft);
+    margin-top: 8px;
   }
   
-  /* Ribbon Open Button */
   .opener-btn {
     margin-top: 28px;
     font-family: "Cinzel", serif;
     font-size: 12px;
     letter-spacing: 0.28em;
-    background: var(--paper);
-    color: #4A121A;
-    border: 1px solid var(--gold);
+    background: var(--gold);
+    color: #fff;
+    border: none;
     padding: 13px 28px;
     cursor: pointer;
-    font-weight: 600;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px -8px rgba(110,80,40,0.5);
+    transition: background 0.3s, transform 0.3s;
   }
   .opener-btn:hover {
-    background: var(--gold);
-    color: #FFFDF8;
+    background: var(--gold-deep);
     transform: translateY(-2px);
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
   }
 
   /* ---------- REVEAL ON SCROLL ---------- */
@@ -393,15 +383,20 @@
 </head>
 <body class="locked">
 
-<!-- INTRO GATEWAY OVERLAY (Dark Maroon Ribbon over Beige) -->
+<!-- INTRO GATEWAY OVERLAY (Beige Background with 3D Maroon Ribbon) -->
 <div class="opener" id="opener">
-  <div class="opener-ribbon">
+  <div class="opener-content">
+    <p class="small">HOUSEWARMING INVITATION</p>
+    
+    <!-- 3D Maroon Velvet Ribbon Graphic -->
+    <img src="assets/maroon-ribbon.png" alt="Maroon Ribbon" class="ribbon-banner">
+
     <div class="head">
-      <p class="small">HOUSEWARMING INVITATION</p>
       <div class="ar-name" lang="ar" dir="rtl">سَكِينَة</div>
       <h1>SUKOON</h1>
       <p class="opener-sub">Mr. & Mrs. Ahammed Razik Vengatt</p>
     </div>
+
     <button class="opener-btn" id="open-btn" type="button">OPEN INVITATION ✧</button>
   </div>
 </div>
