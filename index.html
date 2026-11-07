@@ -263,7 +263,7 @@
     font-size:15px;padding:8px 16px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:60}
   .toast.show{opacity:1}
 
-  /* ---------- OPENING SCREEN / ANIMATED UNTIE RIBBON OVERLAY ---------- */
+  /* ---------- OPENING SCREEN / ANIMATED FLAT MAROON RIBBON OVERLAY ---------- */
   .opener {
     position: fixed;
     inset: 0;
@@ -294,106 +294,92 @@
     align-items: center;
   }
 
-  /* PURE CSS 3D MAROON SATIN RIBBON & BOW */
+  /* CLASSIC ELEGANT FLAT MAROON RIBBON & BOW */
   .ribbon-container {
     position: relative;
     width: 100%;
-    max-width: 320px;
-    height: 84px;
-    margin: 14px auto 26px;
+    max-width: 300px;
+    height: 70px;
+    margin: 12px auto 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: drop-shadow(0 12px 24px rgba(60, 10, 18, 0.45));
-    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+    transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.7s ease;
   }
 
-  /* Horizontal Ribbon Bands */
+  /* Horizontal Ribbon Strips */
   .ribbon-container::before, .ribbon-container::after {
     content: "";
     position: absolute;
-    top: 30px;
-    height: 26px;
-    background: linear-gradient(180deg, #6b1824 0%, #420b13 50%, #220307 100%);
-    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+    top: 24px;
+    height: 22px;
+    background: #5B121E;
     z-index: 1;
-    transition: transform 1s ease;
+    transition: transform 0.9s ease, opacity 0.7s ease;
   }
   .ribbon-container::before { left: -30px; right: 50%; }
   .ribbon-container::after { left: 50%; right: -30px; }
 
-  /* Center Bow Knot */
+  /* Center Knot */
   .ribbon-knot {
     position: relative;
-    width: 34px;
-    height: 42px;
-    background: radial-gradient(circle at 40% 30%, #7d1f2e 0%, #4a0d17 70%, #28040a 100%);
-    border-radius: 50%/20%;
-    box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.35), 0 5px 10px rgba(0, 0, 0, 0.5);
+    width: 28px;
+    height: 36px;
+    background: #4A0E17;
+    border-radius: 4px;
     z-index: 5;
-    transition: transform 1s ease;
-  }
-  .ribbon-knot::before {
-    content: "";
-    position: absolute;
-    inset: 6px 2px;
-    border-radius: 50%;
-    background: linear-gradient(90deg, rgba(0,0,0,0.35), transparent, rgba(0,0,0,0.35));
+    transition: transform 0.9s ease, opacity 0.7s ease;
   }
 
   /* Bow Loops */
   .ribbon-loop {
     position: absolute;
     top: 4px;
-    width: 80px;
-    height: 50px;
-    background: linear-gradient(135deg, #751b29 0%, #450c14 60%, #250308 100%);
+    width: 70px;
+    height: 42px;
+    background: #5B121E;
     border-radius: 50% 50% 40% 40%;
-    box-shadow: inset 0 3px 7px rgba(255, 255, 255, 0.3), inset 0 -4px 7px rgba(0, 0, 0, 0.6);
     z-index: 3;
-    transition: transform 1s ease;
+    transition: transform 0.9s ease, opacity 0.7s ease;
   }
   .ribbon-loop.left-loop {
-    right: calc(50% + 10px);
-    transform: rotate(-18deg) skewX(-10deg);
-    border-radius: 60% 40% 50% 50% / 60% 50% 50% 40%;
+    right: calc(50% + 8px);
+    transform: rotate(-22deg);
   }
   .ribbon-loop.right-loop {
-    left: calc(50% + 10px);
-    transform: scaleX(-1) rotate(-18deg) skewX(-10deg);
-    border-radius: 60% 40% 50% 50% / 60% 50% 50% 40%;
+    left: calc(50% + 8px);
+    transform: scaleX(-1) rotate(-22deg);
   }
 
   /* Ribbon Tails */
   .ribbon-tail {
     position: absolute;
-    top: 40px;
-    width: 52px;
-    height: 64px;
-    background: linear-gradient(145deg, #5c141f 0%, #380810 60%, #1a0104 100%);
+    top: 34px;
+    width: 44px;
+    height: 54px;
+    background: #4A0E17;
     z-index: 2;
-    box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.25);
-    transition: transform 1s ease;
+    transition: transform 0.9s ease, opacity 0.7s ease;
   }
   .ribbon-tail.left {
-    right: calc(50% + 12px);
+    right: calc(50% + 10px);
     transform: rotate(25deg);
     clip-path: polygon(0 0, 100% 0, 80% 100%, 50% 80%, 20% 100%);
   }
   .ribbon-tail.right {
-    left: calc(50% + 12px);
+    left: calc(50% + 10px);
     transform: rotate(-25deg);
     clip-path: polygon(0 0, 100% 0, 80% 100%, 50% 80%, 20% 100%);
   }
 
-  /* UNTYING ANIMATION ON CLICK */
-  .opener.untying .ribbon-container::before { transform: translateX(-120%) rotate(-15deg); opacity: 0; }
-  .opener.untying .ribbon-container::after { transform: translateX(120%) rotate(15deg); opacity: 0; }
-  .opener.untying .ribbon-knot { transform: scale(1.4) rotate(45deg); opacity: 0; }
-  .opener.untying .left-loop { transform: translate(-60px, -40px) rotate(-65deg) scale(0.6); opacity: 0; }
-  .opener.untying .right-loop { transform: translate(60px, -40px) rotate(65deg) scale(0.6); opacity: 0; }
-  .opener.untying .ribbon-tail.left { transform: translate(-40px, 60px) rotate(55deg); opacity: 0; }
-  .opener.untying .ribbon-tail.right { transform: translate(40px, 60px) rotate(-55deg); opacity: 0; }
+  /* UNTYING / SPLITTING ANIMATION ON CLICK */
+  .opener.untying .ribbon-container::before { transform: translateX(-150%) rotate(-10deg); opacity: 0; }
+  .opener.untying .ribbon-container::after { transform: translateX(150%) rotate(10deg); opacity: 0; }
+  .opener.untying .ribbon-knot { transform: scale(1.5) rotate(45deg); opacity: 0; }
+  .opener.untying .left-loop { transform: translate(-50px, -35px) rotate(-60deg) scale(0.5); opacity: 0; }
+  .opener.untying .right-loop { transform: translate(50px, -35px) rotate(60deg) scale(0.5); opacity: 0; }
+  .opener.untying .ribbon-tail.left { transform: translate(-30px, 50px) rotate(50deg); opacity: 0; }
+  .opener.untying .ribbon-tail.right { transform: translate(30px, 50px) rotate(-50deg); opacity: 0; }
 
   .opener .small {
     font-family: "Cinzel", serif;
@@ -474,12 +460,12 @@
 </head>
 <body class="locked">
 
-<!-- INTRO GATEWAY OVERLAY WITH ANIMATED UNTIE RIBBON -->
+<!-- INTRO GATEWAY OVERLAY WITH ANIMATED FLAT MAROON RIBBON -->
 <div class="opener" id="opener">
   <div class="opener-content">
     <p class="small">HOUSEWARMING INVITATION</p>
     
-    <!-- Animated Pure CSS 3D Maroon Velvet Ribbon & Bow -->
+    <!-- Animated Pure CSS Flat Maroon Ribbon & Bow -->
     <div class="ribbon-container" aria-hidden="true">
       <div class="ribbon-tail left"></div>
       <div class="ribbon-tail right"></div>
