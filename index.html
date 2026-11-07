@@ -263,7 +263,7 @@
     font-size:15px;padding:8px 16px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:60}
   .toast.show{opacity:1}
 
-  /* ---------- OPENING SCREEN / MAROON RIBBON OVERLAY ---------- */
+  /* ---------- OPENING SCREEN / UNTIE RIBBON OVERLAY ---------- */
   .opener {
     position: fixed;
     inset: 0;
@@ -294,14 +294,21 @@
     align-items: center;
   }
 
-  /* Ribbon Graphic Banner */
-  .ribbon {
+  /* Ribbon Graphic Banner with Untying Animation */
+  .ribbon-banner {
     width: 100%;
-    max-width: 480px;
+    max-width: 500px;
     height: auto;
     display: block;
-    margin: 10px auto 20px;
-    filter: drop-shadow(0 12px 25px rgba(74, 18, 26, 0.35));
+    margin: 12px auto 24px;
+    filter: drop-shadow(0 12px 25px rgba(74, 18, 26, 0.4));
+    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+  }
+
+  /* Untying effect triggered on open */
+  .opener.untying .ribbon-banner {
+    transform: scale(1.2) rotate(8deg);
+    opacity: 0;
   }
 
   .opener .small {
@@ -334,7 +341,7 @@
   }
   
   .opener-btn {
-    margin-top: 28px;
+    margin-top: 30px;
     font-family: "Cinzel", serif;
     font-size: 12px;
     letter-spacing: 0.28em;
@@ -383,13 +390,13 @@
 </head>
 <body class="locked">
 
-<!-- INTRO GATEWAY OVERLAY (Beige Background with 3D Maroon Ribbon) -->
+<!-- INTRO GATEWAY OVERLAY WITH UNTIE RIBBON INTERACTION -->
 <div class="opener" id="opener">
   <div class="opener-content">
     <p class="small">HOUSEWARMING INVITATION</p>
     
     <!-- 3D Maroon Velvet Ribbon Graphic -->
-    <img src="assets/maroon-ribbon.png" alt="Maroon Ribbon" class="ribbon">
+    <img src="assets/maroon-ribbon.png" alt="Maroon Velvet Ribbon" class="ribbon-banner">
 
     <div class="head">
       <div class="ar-name" lang="ar" dir="rtl">سكون</div>
@@ -397,7 +404,7 @@
       <p class="opener-sub">Mr. & Mrs. Ahammed Razik Vengatt</p>
     </div>
 
-    <button class="opener-btn" id="open-btn" type="button">OPEN INVITATION ✧</button>
+    <button class="opener-btn" id="open-btn" type="button">Untie Ribbon &amp; Open Invitation ✧</button>
   </div>
 </div>
 
@@ -613,7 +620,7 @@
 <div class="toast" id="toast" role="status">Address copied</div>
 
 <script>
-  // Intro Gateway handling & Audio Unlock
+  // Intro Gateway handling & Audio Unlock with Untie Ribbon Animation
   const opener = document.getElementById('opener');
   const openBtn = document.getElementById('open-btn');
   const audio = document.getElementById('bg-audio');
@@ -622,9 +629,14 @@
     // Play audio safely within user click context
     audio.play().catch(err => console.log("Audio play error:", err));
     
-    // Hide gateway overlay and unlock scroll
-    opener.classList.add('gone');
-    document.body.classList.remove('locked');
+    // Add untying class for animation
+    opener.classList.add('untying');
+    
+    // Hide gateway overlay and unlock scroll after animation completes
+    setTimeout(() => {
+      opener.classList.add('gone');
+      document.body.classList.remove('locked');
+    }, 700);
   });
 
   const homeStage = document.getElementById('welcome-home');
