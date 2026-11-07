@@ -417,7 +417,7 @@
 </svg>
 
 <!-- BACKGROUND MUSIC -->
-<audio id="bg-audio" autoplay loop preload="auto">
+<audio id="bg-audio" loop preload="auto">
   <source src="assets/music.mp3" type="audio/mpeg">
 </audio>
 
@@ -588,6 +588,8 @@
 <script>
   const homeStage = document.getElementById('welcome-home');
   const homeTrigger = document.getElementById('home-trigger');
+  const audio = document.getElementById('bg-audio');
+
   homeStage.classList.add('home-ready');
   homeTrigger.hidden = false;
   homeTrigger.addEventListener('click', () => {
@@ -597,10 +599,23 @@
     homeStage.classList.add('home-lit');
     homeTrigger.textContent = 'Replay the welcome';
     document.getElementById('home-note').textContent = 'Welcome to SUKOON. Our home is warmer with you.';
+    
+    // Play audio upon user gesture
+    if (audio.paused) {
+      audio.play().catch(() => {});
+    }
   });
 
-  const audio = document.getElementById('bg-audio');
-  audio.play().catch(() => {});
+  // Global user interaction listener to ensure mobile browser audio unlock
+  function startAudioOnGesture() {
+    if (audio.paused) {
+      audio.play().catch(() => {});
+    }
+    document.removeEventListener('click', startAudioOnGesture);
+    document.removeEventListener('touchstart', startAudioOnGesture);
+  }
+  document.addEventListener('click', startAudioOnGesture, { once: true });
+  document.addEventListener('touchstart', startAudioOnGesture, { once: true });
 
   // Countdown to 12 Dec 2026, 12:00 PM India time
   const eventTime = Date.parse('2026-12-12T12:00:00+05:30');
@@ -691,5 +706,3 @@
 </script>
 </body>
 </html>
-
-
